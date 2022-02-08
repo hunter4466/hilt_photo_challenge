@@ -12,7 +12,7 @@ class EnlargedPhotoViewHolder private constructor(private val binding: EnlargedP
 
     fun bind(item: PhotoInfo) {
         binding.executePendingBindings()
-        glidify(item.thumbnailUrl, binding.enlargedPhotoView)
+        glidify(item.url, binding.enlargedPhotoView)
     }
 
     companion object {
