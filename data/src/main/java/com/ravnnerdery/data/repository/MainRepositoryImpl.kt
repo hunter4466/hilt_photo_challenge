@@ -6,7 +6,9 @@ import com.ravnnerdery.data.database.models.PhotoInfoEntity
 import com.ravnnerdery.data.networking.models.PhotoInfoResponse
 import com.ravnnerdery.domain.models.PhotoInfo
 import com.ravnnerdery.domain.repository.MainRepository
-import com.ravnnerdery.photo_challenge.network.PhotosApi
+import com.ravnnerdery.photo_challenge.network.PhotosApiService
+import dagger.Provides
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -14,10 +16,12 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class MainRepositoryImpl(
+
+class MainRepositoryImpl @Inject constructor(
     private val photosDao: DatabaseDao,
-    private val photosApi: PhotosApi,
+    private val photosApi: PhotosApiService,
 ) : MainRepository {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -31,7 +35,7 @@ class MainRepositoryImpl(
     }
 
     override fun loadFromApiAndSetIntoDatabase() {
-        photosApi.retrofitService.getPhotos().enqueue(object : Callback<List<PhotoInfoResponse>> {
+        photosApi.getPhotos().enqueue(object : Callback<List<PhotoInfoResponse>> {
             override fun onResponse(
                 call: Call<List<PhotoInfoResponse>>,
                 response: Response<List<PhotoInfoResponse>>
