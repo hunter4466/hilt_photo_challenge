@@ -4,9 +4,26 @@ import com.ravnnerdery.data.useCases.GetAllPhotosUseCase
 import com.ravnnerdery.data.useCases.GetAllPhotosUseCaseImpl
 import com.ravnnerdery.data.useCases.LoadApiToDbUseCase
 import com.ravnnerdery.data.useCases.LoadApiToDbUseCaseImpl
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.components.SingletonComponent
 
-val dataUseCasesModule = module {
-    factory<GetAllPhotosUseCase> { GetAllPhotosUseCaseImpl(get()) }
-    factory<LoadApiToDbUseCase> { LoadApiToDbUseCaseImpl(get()) }
+@Module
+@InstallIn(SingletonComponent::class)
+object DataUseCasesModule {
+    @Provides
+    fun bindLoadApiToDbUseCase(
+        getAllPhotosUseCaseImpl: LoadApiToDbUseCaseImpl
+    ): LoadApiToDbUseCase {
+        return getAllPhotosUseCaseImpl
+    }
+
+    @Provides
+    fun bindGetAllPhotosUseCase(
+        getAllPhotosUseCaseImpl: GetAllPhotosUseCaseImpl
+    ): GetAllPhotosUseCase {
+        return getAllPhotosUseCaseImpl
+    }
 }
