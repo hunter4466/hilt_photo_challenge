@@ -8,3 +8,6 @@ import com.ravnnerdery.data.database.models.PhotoInfoEntity
 abstract class PhotosDatabase : RoomDatabase() {
     abstract fun databaseDao(): DatabaseDao
 }
+
+
+
