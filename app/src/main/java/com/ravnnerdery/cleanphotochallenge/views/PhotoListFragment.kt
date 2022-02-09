@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
@@ -12,11 +13,12 @@ import com.ravnnerdery.cleanphotochallenge.viewModels.PhotoListViewModel
 import com.ravnnerdery.cleanphotochallenge.adapters.PhotosAdapter
 import com.ravnnerdery.cleanphotochallenge.adapters.viewHolders.photoListViewHolder.PhotoClickListener
 import com.ravnnerdery.cleanphotochallenge.databinding.PhotoListFragmentBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class PhotoListFragment : Fragment() {
+@AndroidEntryPoint
+class PhotoListFragment: Fragment() {
 
-    private val photoListViewModel: PhotoListViewModel by viewModel()
+    private val photoListViewModel: PhotoListViewModel by viewModels()
     private var binding: PhotoListFragmentBinding? = null
     private lateinit var adapter: PhotosAdapter
     private lateinit var snapHelper: SnapHelper

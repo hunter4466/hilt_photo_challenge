@@ -5,17 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.ravnnerdery.cleanphotochallenge.adapters.EnlargedPhotoAdapter
 import com.ravnnerdery.cleanphotochallenge.databinding.EnlargedPhotoFragmentBinding
 import com.ravnnerdery.cleanphotochallenge.viewModels.EnlargedPhotoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class EnlargedPhotoFragment : Fragment() {
 
-    @Inject
-    lateinit var enlargedPhotoViewModel: EnlargedPhotoViewModel
+    private val enlargedPhotoViewModel: EnlargedPhotoViewModel by viewModels()
     private lateinit var binding: EnlargedPhotoFragmentBinding
     private lateinit var adapter: EnlargedPhotoAdapter
     private lateinit var snapHelper: SnapHelper
