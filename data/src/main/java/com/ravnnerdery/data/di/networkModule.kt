@@ -1,5 +1,6 @@
 package com.ravnnerdery.data.di
 
+import android.util.Log
 import com.ravnnerdery.photo_challenge.network.PhotosApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -21,6 +22,7 @@ object NetWorkModule {
     @Singleton
     @Provides
     fun getRetrofit(): Retrofit {
+        Log.v("TRACE CHASE","<<<<<<<<<<<< INITIALIZED RETROFIT SERVICE >>>>>>>>>>>>>>>>>>>")
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl(BASE_URL)
@@ -30,6 +32,7 @@ object NetWorkModule {
     @Singleton
     @Provides
     fun getPhotosAPI(retrofit: Retrofit): PhotosApiService {
+        Log.v("TRACE CHASE","<<<<<<<<<<<< INITIALIZED API >>>>>>>>>>>>>>>>>>>")
         val retrofitService: PhotosApiService by lazy {
             retrofit.create(PhotosApiService::class.java)
         }
