@@ -16,6 +16,7 @@ private const val PHOTOS_DATABASE = "Photos_database"
 @Module
 class DatabaseModule {
     @Provides
+    @Singleton
     fun provideDatabaseDao (photosDatabase: PhotosDatabase): DatabaseDao {
         return photosDatabase.databaseDao()
     }
