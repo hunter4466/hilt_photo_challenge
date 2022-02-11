@@ -1,4 +1,4 @@
-# Clean Photo Challenge
+# Hilt/RxJava/RxAndroid Photo Challenge
 In this project I have built an app that displays a lit of photos fetched from an API and stores in a database, then displays with liveData all the items in the main screens and allow the user to navigate to another screen with a larger version of the picture in a dragable list.
 For this update I used Clean architecture pattern to organize data.
 
@@ -33,6 +33,12 @@ For this update I used Clean architecture pattern to organize data.
 ### Networking and parsing
 - Retrofit
 - Moshi
+
+### Dependecies injection
+-Dagger/Hilt
+
+### LiveData
+-RxAndroid/RxJava
 
 ### Architecture
 - Clean Pattern
