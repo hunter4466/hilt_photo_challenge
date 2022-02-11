@@ -8,7 +8,7 @@ interface LoadApiToDbUseCase {
 }
 
 class LoadApiToDbUseCaseImpl @Inject constructor(private val repo: MainRepository) : LoadApiToDbUseCase {
-    override fun execute() {
-        repo.loadFromApiAndSetIntoDatabase()
+    override fun execute(){
+       repo.loadFromApiAndSetIntoDatabase()
     }
 }

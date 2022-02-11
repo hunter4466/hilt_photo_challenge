@@ -2,14 +2,15 @@ package com.ravnnerdery.data.useCases
 
 import com.ravnnerdery.domain.repository.MainRepository
 import com.ravnnerdery.domain.models.PhotoInfo
+import io.reactivex.Observable
 import javax.inject.Inject
 
 interface GetAllPhotosUseCase {
-    suspend fun execute(): MutableList<PhotoInfo>
+    fun execute(): Observable<MutableList<PhotoInfo>>
 }
 
-class GetAllPhotosUseCaseImpl @Inject constructor(private val repo: MainRepository) : GetAllPhotosUseCase {
-    override suspend fun execute(): MutableList<PhotoInfo> {
-        return repo.allPhotosFromDatabase()
+class GetAllPhotosUseCaseImpl @Inject constructor(val repo: MainRepository) : GetAllPhotosUseCase {
+    override fun execute(): Observable<MutableList<PhotoInfo>> {
+       return repo.provideAllPhotosObservable()
     }
 }
