@@ -2,23 +2,26 @@ package com.ravnnerdery.cleanphotochallenge.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.ravnnerdery.data.useCases.GetAllPhotosUseCase
-import com.ravnnerdery.domain.models.PhotoInfo
+import com.ravnnerdery.data.useCases.LoadAllPhotosFromDBUseCase
+import com.ravnnerdery.data.useCases.LoadApiToDbUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PhotoListViewModel @Inject constructor(
-    private val getAllPhotos: GetAllPhotosUseCase
+    private val loadApiToDbUseCase: LoadApiToDbUseCase,
+    private val loadAllPhotosFromDBUseCase: LoadAllPhotosFromDBUseCase,
+    getAllPhotosUseCase: GetAllPhotosUseCase,
 ) : ViewModel() {
+
+    val allPhotosObservable = getAllPhotosUseCase
+
     init {
-        allPhotos()
+        refreshData()
+        loadAllPhotosFromDBUseCase.execute()
     }
 
-    val mutableAllPhotos = MutableLiveData<List<PhotoInfo>>(emptyList())
     private val _navigateToSnapshot = MutableLiveData<Long?>()
     var currentPosition: Int? = 0
 
@@ -33,9 +36,8 @@ class PhotoListViewModel @Inject constructor(
         _navigateToSnapshot.value = null
     }
 
-    fun allPhotos() {
-        viewModelScope.launch(Dispatchers.IO) {
-            mutableAllPhotos.postValue(getAllPhotos.execute())
-        }
+    fun refreshData() {
+            loadApiToDbUseCase.execute()
+            loadAllPhotosFromDBUseCase.execute()
     }
 }
