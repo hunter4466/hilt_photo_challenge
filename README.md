@@ -35,10 +35,10 @@ For this update I used Clean architecture pattern to organize data.
 - Moshi
 
 ### Dependecies injection
--Dagger/Hilt
+- Dagger/Hilt
 
 ### LiveData
--RxAndroid/RxJava
+- RxAndroid/RxJava
 
 ### Architecture
 - Clean Pattern
@@ -54,11 +54,11 @@ For this update I used Clean architecture pattern to organize data.
 
 1. Clone the repo
 
-   git clone https://github.com/hunter4466/clean_photo_challenge.git
+   git clone https://github.com/hunter4466/hilt_photo_challenge.git
 
 2. Open Android Studio
 
-   cd ...~/clean_photo_challenge
+   cd ...~/hilt_photo_challenge
 
 3. Debug
 
@@ -81,7 +81,7 @@ For this update I used Clean architecture pattern to organize data.
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/hunter4466/clean_photo_challenge/issues).
+Feel free to check the [issues page](https://github.com/hunter4466/hilt_photo_challenge/issues).
 
 ## Show your support
 
